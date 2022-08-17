@@ -45,9 +45,7 @@ app.get("/compose",function (req,res) {
 });
 
 app.post("/compose",function (req,res) {
-  let composeText = req.body.postTitle;
-  console.log(composeText);
-  res.redirect("/compose");
+  const post = req.body.postTitle + req.body.postBody;
 });
 
 app.listen(3000, function() {
