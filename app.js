@@ -15,10 +15,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+let posts = [];
 //#region Home page("/")
 app.get("/", function (req,res) {
   res.render("home", {
-    homeStartingContent: homeStartingContent
+    homeStartingContent: homeStartingContent,
+    posts: posts
   });
 });
 //#endregion
@@ -40,7 +42,6 @@ app.get("/contact", function (req,res) {
 //#endregion
 
 //#region compose page("/compose")
-let postBox = [];
 app.get("/compose",function (req,res) {
   res.render("compose");
 });
@@ -51,11 +52,12 @@ app.post("/compose",function (req,res) {
     content: req.body.postBody
   };
 
-  postBox.push(post);
-  console.log(postBox);
+  posts.push(post);
   res.redirect("/");
 });
+//#endregion
 
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
+
