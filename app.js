@@ -39,6 +39,17 @@ app.get("/contact", function (req,res) {
 });
 //#endregion
 
+//#region compose page("/compose")
+app.get("/compose",function (req,res) {
+  res.render("compose");
+});
+
+app.post("/compose",function (req,res) {
+  let composeText = req.body.postTitle;
+  console.log(composeText);
+  res.redirect("/compose");
+});
+
 app.listen(3000, function() {
   console.log("Server started on port 3000");
 });
